@@ -4,8 +4,8 @@
   "keywords": ["silex", "i18n routing"],
   "license": "MIT",
   "require": {
-    "silex/silex": "~1.1",
-    "symfony/translation": "~2.4"
+    "silex/silex": "~1.3",
+    "symfony/translation": "^3.0"
   },
   "autoload": {
     "psr-0": { "Jenyak\\I18nRouting": "src" }
