@@ -27,8 +27,13 @@ class I18nRoutingServiceProvider implements ServiceProviderInterface
             return new I18nUrlGenerator($app['routes'], $app['request_context']);
         });
 
-        $app['i18n_routing.locales'] = array('en');
-        $app['i18n_routing.translation_domain'] = 'routes';
+        if(!isset($app['i18n_routing.locales'])){
+            $app['i18n_routing.locales'] = array('en');
+        }
+
+        if(!isset($app['i18n_routing.translation_domain'])) {
+            $app['i18n_routing.translation_domain'] = 'routes';
+        }
     }
 
     public function boot(Application $app)
