@@ -4,6 +4,7 @@ namespace Jenyak\I18nRouting\Provider;
 
 use Jenyak\I18nRouting\I18nControllerCollection;
 use Jenyak\I18nRouting\I18nUrlGenerator;
+use Jenyak\I18nRouting\I18nUrlMatcher;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -34,6 +35,10 @@ class I18nRoutingServiceProvider implements ServiceProviderInterface
         if(!isset($app['i18n_routing.translation_domain'])) {
             $app['i18n_routing.translation_domain'] = 'routes';
         }
+
+        $app['url_matcher'] = $app->share(function () use ($app) {
+            return new I18nUrlMatcher($app['routes'], $app['request_context']);
+        });
     }
 
     public function boot(Application $app)
