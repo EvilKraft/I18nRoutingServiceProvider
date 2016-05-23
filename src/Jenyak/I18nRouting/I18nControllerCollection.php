@@ -83,7 +83,12 @@ class I18nControllerCollection extends ControllerCollection
                             $localeRoute = clone $route;
                             $localeRoute->setPath($pattern);
                             $localeRoute->setDefault('_locale', $locale);
-                            $routes->add($locale.self::ROUTING_PREFIX.$name, $localeRoute);
+                            
+                            if($locale == $this->defaultLocale){
+                                $routes->add($name, $localeRoute);
+                            }else{
+                                $routes->add($locale.self::ROUTING_PREFIX.$name, $localeRoute);
+                            }
                         }
                     }
                 }
